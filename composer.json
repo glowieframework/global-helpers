@@ -1,17 +1,17 @@
 {
-    "name": "eugabrielsilva/glowie-helpers",
+    "name": "glowieframework/global-helpers",
     "description": "Global helper functions for Glowie Framework",
     "license": "MIT",
-    "homepage": "https://gabrielsilva.dev.br",
+    "homepage": "https://gabrielsilva.dev.br/glowie",
     "support": {
-        "issues": "https://github.com/eugabrielsilva/glowie-helpers/issues",
-        "source": "https://github.com/eugabrielsilva/glowie-helpers"
+        "issues": "https://github.com/glowieframework/global-helpers/issues",
+        "source": "https://github.com/glowieframework/global-helpers"
     },
     "authors": [
         {
             "name": "Gabriel Silva",
             "email": "glowie@gabrielsilva.dev.br",
-            "homepage": "https://gabrielsilva.dev.br"
+            "homepage": "https://gabrielsilva.dev.br/glowie"
         }
     ],
     "require-dev": {
