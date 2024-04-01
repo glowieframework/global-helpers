@@ -1,0 +1,25 @@
+{
+    "name": "eugabrielsilva/glowie-helpers",
+    "description": "Global helper functions for Glowie Framework",
+    "license": "MIT",
+    "homepage": "https://gabrielsilva.dev.br",
+    "support": {
+        "issues": "https://github.com/eugabrielsilva/glowie-helpers/issues",
+        "source": "https://github.com/eugabrielsilva/glowie-helpers"
+    },
+    "authors": [
+        {
+            "name": "Gabriel Silva",
+            "email": "glowie@gabrielsilva.dev.br",
+            "homepage": "https://gabrielsilva.dev.br"
+        }
+    ],
+    "require-dev": {
+        "glowieframework/glowie-core": "^1.5"
+    },
+    "autoload": {
+        "files": [
+            "helpers.php"
+        ]
+    }
+}
