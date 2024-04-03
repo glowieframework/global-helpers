@@ -11,7 +11,7 @@ composer require glowieframework/global-helpers
 ### Usage
 Use any helper method from your application controllers, models, middlewares or views.
 
-Each helper will return an instance of the corresponding Glowie core feature.
+Each helper will return an instance of the corresponding Glowie core class.
 
 **Available methods:**
 - `config()`

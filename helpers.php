@@ -135,7 +135,7 @@ if (!function_exists('session')) {
      * Gets the value associated to a key in the session data.
      * @param string|null $key (Optional) Key to get value (accepts dot notation keys). Use `null` to return the Session instance.
      * @param mixed $default (Optional) Default value to return if the key does not exist.
-     * @return mixed Returns the value if exists or the default if not, or the Session instance.
+     * @return \Glowie\Core\Http\Session|mixed Returns the value if exists or the default if not, or the Session instance.
      */
     function session(?string $key = null, $default = null)
     {
@@ -150,7 +150,7 @@ if (!function_exists('request')) {
      * Gets a value from the request data.
      * @param string|null $key (Optional) Key to get value. Use `null` to return the Request instance.
      * @param mixed $default (Optional) Default value to return if the key does not exist.
-     * @return mixed Returns the value if exists or the default if not, or the Request instance.
+     * @return \Glowie\Core\Http\Request|mixed Returns the value if exists or the default if not, or the Request instance.
      */
     function request(?string $key = null, $default = null)
     {
@@ -165,7 +165,7 @@ if (!function_exists('response')) {
      * Sends a raw plain text body to the response.
      * @param string|null $content (Optional) Content to set as the body. Use `null` to return the Response instance.
      * @param string $type (Optional) Content type header to set, defaults to `text/plain`.
-     * @return Glowie\Core\Http\Response Returns the Response instance.
+     * @return \Glowie\Core\Http\Response|void Returns the Response instance.
      */
     function response(?string $body = null, string $type = 'text/plain')
     {
@@ -179,7 +179,7 @@ if (!function_exists('db')) {
     /**
      * Creates a new Kraken database instance.
      * @param string $database (Optional) Database connection name (from your app configuration).
-     * @return Glowie\Core\Database\Kraken Kraken database instance query builder.
+     * @return \Glowie\Core\Database\Kraken Kraken database instance query builder.
      */
     function db(string $database = 'default')
     {
@@ -192,7 +192,7 @@ if (!function_exists('cookies')) {
      * Gets the value associated to a key in the cookies data.
      * @param string|null $key (Optional) Key to get value. Use `null` to return the Cookies instance.
      * @param mixed $default (Optional) Default value to return if the key does not exist.
-     * @return mixed Returns the value if exists or the default if not, or the Cookies instance.
+     * @return \Glowie\Core\Http\Cookies|mixed Returns the value if exists or the default if not, or the Cookies instance.
      */
     function cookies(?string $key = null, $default = null)
     {
@@ -207,7 +207,7 @@ if (!function_exists('cache')) {
      * Gets a cache variable.
      * @param string|null $key (Optional) Key to get value. Use `null` to return the Cache instance.
      * @param mixed $default (Optional) Default value to return if the key does not exist.
-     * @return mixed Returns the value if exists or the default if not, or the Cache instance.
+     * @return \Glowie\Core\Tools\Cache|mixed Returns the value if exists or the default if not, or the Cache instance.
      */
     function cache(?string $key = null, $default = null)
     {
@@ -220,7 +220,7 @@ if (!function_exists('cache')) {
 if (!function_exists('auth')) {
     /**
      * Returns an Authenticator instance.
-     * @return Glowie\Core\Tools\Authenticator Authenticator instance.
+     * @return \Glowie\Core\Tools\Authenticator Authenticator instance.
      */
     function auth()
     {
@@ -231,7 +231,7 @@ if (!function_exists('auth')) {
 if (!function_exists('validator')) {
     /**
      * Returns a Validator instance.
-     * @return Glowie\Core\Tools\Validator Validator instance.
+     * @return \Glowie\Core\Tools\Validator Validator instance.
      */
     function validator()
     {
@@ -243,7 +243,7 @@ if (!function_exists('uploader')) {
     /**
      * Returns an Uploader instance.
      * @param string $directory (Optional) Target directory to store the uploaded files.
-     * @return Glowie\Core\Tools\Uploader Uploader instance.
+     * @return \Glowie\Core\Tools\Uploader Uploader instance.
      */
     function uploader(string $directory = 'uploads')
     {
@@ -255,7 +255,7 @@ if (!function_exists('collect')) {
     /**
      * Creates a new Collection.
      * @param array $data (Optional) Initial data to parse into the Collection.
-     * @return Glowie\Core\Collection Collection instance.
+     * @return \Glowie\Core\Collection Collection instance.
      */
     function collect(array $data = [])
     {
@@ -267,7 +267,7 @@ if (!function_exists('element')) {
     /**
      * Creates a new Element.
      * @param array $data (Optional) An associative array with the initial data to parse.
-     * @return Glowie\Core\Element Element instance.
+     * @return \Glowie\Core\Element Element instance.
      */
     function element(array $data = [])
     {
