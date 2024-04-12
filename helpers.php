@@ -154,7 +154,7 @@ if (!function_exists('request')) {
      */
     function request(?string $key = null, $default = null)
     {
-        $request = new \Glowie\Core\Http\Request();
+        $request = \Glowie\Core\Http\Rails::getRequest();
         if (is_null($key)) return $request;
         return $request->get($key, $default);
     }
@@ -169,7 +169,7 @@ if (!function_exists('response')) {
      */
     function response(?string $body = null, string $type = 'text/plain')
     {
-        $response = new \Glowie\Core\Http\Response();
+        $response = \Glowie\Core\Http\Rails::getResponse();
         if (is_null($body)) return $response;
         $response->setBody($body, $type);
     }
@@ -272,5 +272,58 @@ if (!function_exists('element')) {
     function element(array $data = [])
     {
         return new \Glowie\Core\Element($data);
+    }
+}
+
+if (!function_exists('http')) {
+    /**
+     * Creates a new HTTP client instance.
+     * @param array $headers (Optional) Custom headers to send in the request. Must be an associative array with the key being the name of the header\
+     * and the value the header value (can be a string or an array of strings).
+     * @return \Glowie\Core\Tools\Crawler Crawler instance.
+     */
+    function http(array $headers = [])
+    {
+        return new \Glowie\Core\Tools\Crawler($headers);
+    }
+}
+
+if (!function_exists('redirect')) {
+    /**
+     * Redirects to a relative or full URL.
+     * @param string $destination Target URL to redirect to.
+     * @param int $code (Optional) HTTP status code to pass with the redirect.
+     * @return void
+     */
+    function redirect(string $destination, int $code = 307)
+    {
+        return \Glowie\Core\Http\Rails::getResponse()->redirect($destination, $code);
+    }
+}
+
+if (!function_exists('view')) {
+    /**
+     * Renders a view file.
+     * @param string $view View filename. Must be a **.phtml** file inside **app/views** folder, extension is not needed.
+     * @param array $params (Optional) Parameters to pass into the view. Should be an associative array with each variable name and value.
+     */
+    function view(string $view, array $params = [], bool $absolute = false)
+    {
+        return \Glowie\Core\Http\Rails::getController()->renderView($view, $params, $absolute);
+    }
+}
+
+if (!function_exists('layout')) {
+    /**
+     * Renders a layout file.
+     * @param string $layout Layout filename. Must be a **.phtml** file inside **app/views/layouts** folder, extension is not needed.
+     * @param string|null $view (Optional) View filename to render within layout. You can place its content by using `$this->getView()`\
+     * inside the layout file. Must be a **.phtml** file inside **app/views** folder, extension is not needed.
+     * @param array $params (Optional) Parameters to pass into the rendered view and layout. Should be an associative array with each variable name and value.
+     * @param bool $absolute (Optional) Use an absolute path for the view file.
+     */
+    function layout(string $layout, ?string $view = null, array $params = [], bool $absolute = false)
+    {
+        return \Glowie\Core\Http\Rails::getController()->renderLayout($layout, $view, $params, $absolute);
     }
 }

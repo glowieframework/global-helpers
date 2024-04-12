@@ -35,6 +35,10 @@ Each helper will return an instance of the corresponding Glowie core class.
 - `uploader()`
 - `collect()`
 - `element()`
+- `http()`
+- `redirect()`
+- `view()`
+- `layout()`
 
 ## Credits
 Global helpers and Glowie are currently being developed by [Gabriel Silva](https://gabrielsilva.dev.br).
