@@ -327,3 +327,41 @@ if (!function_exists('layout')) {
         return \Glowie\Core\Http\Rails::getController()->renderLayout($layout, $view, $params, $absolute);
     }
 }
+
+if(!function_exists('dispatch')){
+    /**
+     * Adds a job to the queue.
+     * @param string $job A job classname with namespace. You can use `JobName::class` to get this property correctly.
+     * @param mixed $data (Optional) Data to pass to the job.
+     * @param string $queue (Optional) Queue name to add this job to.
+     * @param int $delay (Optional) Delay in seconds to run this job.
+     */
+    function dispatch(string $job, $data = null, string $queue = 'default', int $delay = 0){
+        return \Glowie\Core\Queue\Queue::add($job, $data, $queue, $delay);
+    }
+}
+
+if(!function_exists('is_empty')){
+    /**
+     * Checks if a variable is empty.\
+     * A numeric/bool safe version of PHP `empty()` function.
+     * @var mixed $variable Variable to be checked.
+     * @return bool Returns true if the variable is empty, false otherwise.
+     */
+    function is_empty($variable){
+        return \Util::isEmpty($variable);
+    }
+}
+
+if(!function_exists('retry')){
+    /**
+     * Tries to run a function until the number of attempts is reached.
+     * @param int $attempts Maximum number of attempts.
+     * @param Closure $callback Function to be called.
+     * @param int $sleep (Optional) Delay between each try (in milliseconds).
+     * @return mixed Returns the function result on success.
+     */
+    function retry(int $attempts, Closure $callback, int $sleep = 100){
+        return \Util::retry($attempts, $callback, $sleep);
+    }
+}

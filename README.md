@@ -14,31 +14,34 @@ Use any helper method from your application controllers, models, middlewares or 
 Each helper will return an instance of the corresponding Glowie core class.
 
 **Available methods:**
-- `config()`
-- `env()`
-- `translate()`
-- `dd()`
-- `encrypt()`
-- `decrypt()`
-- `url()`
-- `route()`
-- `asset()`
 - `app_path()`
-- `session()`
+- `asset()`
+- `auth()`
+- `cache()`
+- `collect()`
+- `config()`
+- `cookies()`
+- `db()`
+- `dd()`
+- `decrypt()`
+- `dispatch()`
+- `element()`
+- `encrypt()`
+- `env()`
+- `http()`
+- `is_empty()`
+- `layout()`
+- `redirect()`
 - `request()`
 - `response()`
-- `db()`
-- `cookies()`
-- `cache()`
-- `auth()`
-- `validator()`
+- `retry()`
+- `route()`
+- `session()`
+- `translate()`
 - `uploader()`
-- `collect()`
-- `element()`
-- `http()`
-- `redirect()`
+- `url()`
+- `validator()`
 - `view()`
-- `layout()`
 
 ## Credits
 Global helpers and Glowie are currently being developed by [Gabriel Silva](https://gabrielsilva.dev.br).
