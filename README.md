@@ -21,6 +21,7 @@ Each helper will return an instance of the corresponding Glowie core class.
 - `collect()`
 - `config()`
 - `cookies()`
+- `csrf_token()`
 - `db()`
 - `dd()`
 - `decrypt()`
@@ -31,12 +32,16 @@ Each helper will return an instance of the corresponding Glowie core class.
 - `http()`
 - `is_empty()`
 - `layout()`
+- `logger()`
+- `now()`
+- `public_path()`
 - `redirect()`
 - `request()`
 - `response()`
 - `retry()`
 - `route()`
 - `session()`
+- `today()`
 - `translate()`
 - `uploader()`
 - `url()`

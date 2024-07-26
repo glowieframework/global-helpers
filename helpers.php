@@ -45,10 +45,11 @@ if (!function_exists('dd')) {
     /**
      * Dumps a variable in a human-readable way and ends the script execution.
      * @param mixed $var Variable to be dumped.
+     * @param bool $plain (Optional) Dump variable as plain text instead of HTML.
      */
-    function dd($var)
+    function dd($var, bool $plain = false)
     {
-        \Util::dump($var);
+        \Util::dump($var, $plain);
     }
 }
 
@@ -127,6 +128,18 @@ if (!function_exists('app_path')) {
     function app_path(string $path = '')
     {
         return \Util::location($path);
+    }
+}
+
+if (!function_exists('public_path')) {
+    /**
+     * Returns the real application `public` folder location in the file system.
+     * @param string $path (Optional) Relative path to append to the location.
+     * @return string Full `public` location.
+     */
+    function public_path(string $path = '')
+    {
+        return \Util::location('public/' . $path);
     }
 }
 
@@ -328,7 +341,53 @@ if (!function_exists('layout')) {
     }
 }
 
-if(!function_exists('dispatch')){
+if (!function_exists('csrf_token')) {
+    /**
+     * Returns the session CSRF token if already exists or creates a new one.
+     * @return string Returns the stored or new CSRF token for the current session.
+     */
+    function csrf_token()
+    {
+        return \Util::csrfToken();
+    }
+}
+
+if (!function_exists('logger')) {
+    /**
+     * Writes an information to the app error log (if enabled).
+     * @param string $content Content to be written.
+     */
+    function logger(string $content)
+    {
+        $e = new \Exception($content);
+        $date = date('Y-m-d H:i:s');
+        return \Glowie\Core\Error\Handler::log("[{$date}] {$e->getMessage()}\n{$e->getTraceAsString()}\n\n");
+    }
+}
+
+if (!function_exists('now')) {
+    /**
+     * Creates a DateTime with current date and time.
+     * @return DateTime DateTime instance.
+     */
+    function now()
+    {
+        return new \DateTime();
+    }
+}
+
+if (!function_exists('today')) {
+    /**
+     * Creates a DateTime with current date.
+     * @return DateTime DateTime instance.
+     */
+    function today()
+    {
+        return new \DateTime('today');
+    }
+}
+
+if (!function_exists('dispatch')) {
     /**
      * Adds a job to the queue.
      * @param string $job A job classname with namespace. You can use `JobName::class` to get this property correctly.
@@ -336,24 +395,26 @@ if(!function_exists('dispatch')){
      * @param string $queue (Optional) Queue name to add this job to.
      * @param int $delay (Optional) Delay in seconds to run this job.
      */
-    function dispatch(string $job, $data = null, string $queue = 'default', int $delay = 0){
+    function dispatch(string $job, $data = null, string $queue = 'default', int $delay = 0)
+    {
         return \Glowie\Core\Queue\Queue::add($job, $data, $queue, $delay);
     }
 }
 
-if(!function_exists('is_empty')){
+if (!function_exists('is_empty')) {
     /**
      * Checks if a variable is empty.\
      * A numeric/bool safe version of PHP `empty()` function.
      * @var mixed $variable Variable to be checked.
      * @return bool Returns true if the variable is empty, false otherwise.
      */
-    function is_empty($variable){
+    function is_empty($variable)
+    {
         return \Util::isEmpty($variable);
     }
 }
 
-if(!function_exists('retry')){
+if (!function_exists('retry')) {
     /**
      * Tries to run a function until the number of attempts is reached.
      * @param int $attempts Maximum number of attempts.
@@ -361,7 +422,8 @@ if(!function_exists('retry')){
      * @param int $sleep (Optional) Delay between each try (in milliseconds).
      * @return mixed Returns the function result on success.
      */
-    function retry(int $attempts, Closure $callback, int $sleep = 100){
+    function retry(int $attempts, Closure $callback, int $sleep = 100)
+    {
         return \Util::retry($attempts, $callback, $sleep);
     }
 }
