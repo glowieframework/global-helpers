@@ -427,3 +427,15 @@ if (!function_exists('retry')) {
         return \Util::retry($attempts, $callback, $sleep);
     }
 }
+
+if (!function_exists('storage_path')) {
+    /**
+     * Returns the real application `storage` folder location in the file system.
+     * @param string $path (Optional) Relative path to append to the location.
+     * @return string Full `storage` location.
+     */
+    function storage_path(string $path = '')
+    {
+        return \Util::location('storage/' . $path);
+    }
+}

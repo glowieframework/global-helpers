@@ -41,6 +41,7 @@ Each helper will return an instance of the corresponding Glowie core class.
 - `retry()`
 - `route()`
 - `session()`
+- `storage_path()`
 - `today()`
 - `translate()`
 - `uploader()`
