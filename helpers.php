@@ -41,6 +41,21 @@ if (!function_exists('translate')) {
     }
 }
 
+if (!function_exists('__')) {
+    /**
+     * Gets an internalization string from a language configuration.
+     * @param string $key String key to get (accepts dot notation keys).
+     * @param array $params (Optional) Associative array of parameters to bind into the string.
+     * @param string|null $lang (Optional) Language name to get string from. Leave empty to use the current active language.
+     * @param string $default (Optional) Default value to return if the key is not found.
+     * @return string Returns internationalization string if found or the default value if not.
+     */
+    function __(string $key, array $params = [], ?string $lang = null, string $default = '')
+    {
+        return \Babel::get($key, $params, $lang, $default);
+    }
+}
+
 if (!function_exists('dd')) {
     /**
      * Dumps a variable in a human-readable way and ends the script execution.

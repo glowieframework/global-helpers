@@ -14,6 +14,7 @@ Use any helper method from your application controllers, models, middlewares or 
 Each helper will return an instance of the corresponding Glowie core class.
 
 **Available methods:**
+- `__()`
 - `app_path()`
 - `asset()`
 - `auth()`
