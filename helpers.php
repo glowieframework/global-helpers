@@ -58,13 +58,13 @@ if (!function_exists('__')) {
 
 if (!function_exists('dd')) {
     /**
-     * Dumps a variable in a human-readable way and ends the script execution.
-     * @param mixed $var Variable to be dumped.
-     * @param bool $plain (Optional) Dump variable as plain text instead of HTML.
+     * Dumps a set of variables in a human-readable way and ends the script execution.
+     * @param mixed $vars Variables to be dumped.
+     * @return void
      */
-    function dd($var, bool $plain = false)
+    function dd(...$vars)
     {
-        \Util::dump($var, $plain);
+        \Util::dump(...$vars);
     }
 }
 
@@ -452,5 +452,18 @@ if (!function_exists('storage_path')) {
     function storage_path(string $path = '')
     {
         return \Util::location('storage/' . $path);
+    }
+}
+
+if (!function_exists('old')) {
+    /**
+     * Gets an input value from the previous request, if available.
+     * @param string $key Name of the input to get.
+     * @param mixed $default (Optional) Default value to return if the input doest not exist.
+     * @return mixed Returns the value if exists or the default if not.
+     */
+    function old(string $key, $default = null)
+    {
+        return \Glowie\Core\Http\Rails::getRequest()->old($key, $default);
     }
 }

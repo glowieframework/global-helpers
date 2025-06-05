@@ -35,6 +35,7 @@ Each helper will return an instance of the corresponding Glowie core class.
 - `layout()`
 - `logger()`
 - `now()`
+- `old()`
 - `public_path()`
 - `redirect()`
 - `request()`
