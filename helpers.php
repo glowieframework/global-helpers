@@ -128,9 +128,9 @@ if (!function_exists('asset')) {
      * @param string $token (Optional) Token parameter name to append to the filename.
      * @return string Returns the absolute URL of the asset file with the token.
      */
-    function asset(string $filename)
+    function asset(string $filename, string $token = 'assetVersion')
     {
-        return \Util::asset($filename);
+        return \Util::asset($filename, $token);
     }
 }
 
@@ -248,11 +248,12 @@ if (!function_exists('cache')) {
 if (!function_exists('auth')) {
     /**
      * Returns an Authenticator instance.
+     * @param string $guard (Optional) Authentication guard name (from your app configuration).
      * @return \Glowie\Core\Tools\Authenticator Authenticator instance.
      */
-    function auth()
+    function auth(string $guard = 'default')
     {
-        return new \Glowie\Core\Tools\Authenticator();
+        return new \Glowie\Core\Tools\Authenticator($guard);
     }
 }
 
