@@ -15,9 +15,12 @@ Each helper will return an instance of the corresponding Glowie core class.
 
 **Available methods:**
 - `__()`
+- `abort()`
+- `app()`
 - `app_path()`
 - `asset()`
 - `auth()`
+- `back()`
 - `cache()`
 - `collect()`
 - `config()`
@@ -46,10 +49,12 @@ Each helper will return an instance of the corresponding Glowie core class.
 - `storage_path()`
 - `today()`
 - `translate()`
+- `unless()`
 - `uploader()`
 - `url()`
 - `validator()`
 - `view()`
+- `when()`
 
 ## Credits
 Global helpers and Glowie are currently being developed by [Gabriel Silva](https://gabrielsilva.dev.br).

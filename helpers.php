@@ -324,7 +324,7 @@ if (!function_exists('redirect')) {
      * @param int $code (Optional) HTTP status code to pass with the redirect.
      * @return void
      */
-    function redirect(string $destination, int $code = 307)
+    function redirect(string $destination, int $code = 302)
     {
         return \Glowie\Core\Http\Rails::getResponse()->redirect($destination, $code);
     }
@@ -466,5 +466,75 @@ if (!function_exists('old')) {
     function old(string $key, $default = null)
     {
         return \Glowie\Core\Http\Rails::getRequest()->old($key, $default);
+    }
+}
+
+if (!function_exists('app')) {
+    /**
+     * Gets or sets a shared state in the application container.
+     * @param string $name State name to be get or set.
+     * @param mixed $data (Optional) Data to set. If null, only returns the state value.
+     * @return void
+     */
+    function app(string $name, $data = null)
+    {
+        if (is_null($data)) return \Glowie\Core\Application::getState($name);
+        return \Glowie\Core\Application::setState($name, $data);
+    }
+}
+
+if (!function_exists('abort')) {
+    /**
+     * Sets the HTTP status code for the response.
+     * @param int $code HTTP status code to set.
+     * @param string $message (Optional) Custom reason phrase to set.
+     * @return Response Returns the Response instance.
+     */
+    function abort(int $code, string $message = '')
+    {
+        return \Glowie\Core\Http\Rails::getResponse()->setStatusCode($code, $message);
+    }
+}
+
+if (!function_exists('back')) {
+    /**
+     * Redirects the user to the previous URL.
+     * @param int $code (Optional) HTTP status code to pass with the redirect.
+     * @param string $fallback (Optional) Target URL to use if the previous URL is not available. Defaults to the app root URL.
+     * @return Response Returns the Response instance.
+     */
+    function back(int $code = 302, string $fallback = '')
+    {
+        return \Glowie\Core\Http\Rails::getResponse()->redirectBack($code, $fallback);
+    }
+}
+
+if (!function_exists('when')) {
+    /**
+     * Returns a value when a condition is true.
+     * @param boolean $condition Condition to be evaluated.
+     * @param mixed $return Return value. If is a callable, the result of the function will be returned.
+     * @return mixed Returns the value according to the condition evaluation.
+     */
+    function when(bool $condition, $return)
+    {
+        if (!$condition) return null;
+        if (!is_callable($return)) return $return;
+        return call_user_func_array($return, [$condition]);
+    }
+}
+
+if (!function_exists('unless')) {
+    /**
+     * Returns a value when a condition is false.
+     * @param boolean $condition Condition to be evaluated.
+     * @param mixed $return Return value. If is a callable, the result of the function will be returned.
+     * @return mixed Returns the value according to the condition evaluation.
+     */
+    function unless(bool $condition, $return)
+    {
+        if ($condition) return null;
+        if (!is_callable($return)) return $return;
+        return call_user_func_array($return, [$condition]);
     }
 }
