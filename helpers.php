@@ -430,6 +430,19 @@ if (!function_exists('is_empty')) {
     }
 }
 
+if (!function_exists('filled')) {
+    /**
+     * Checks if a variable is not empty.\
+     * A numeric/bool safe version of PHP `empty()` function.
+     * @var mixed $variable Variable to be checked.
+     * @return bool Returns true if the variable is empty, false otherwise.
+     */
+    function filled($variable)
+    {
+        return !\Util::isEmpty($variable);
+    }
+}
+
 if (!function_exists('retry')) {
     /**
      * Tries to run a function until the number of attempts is reached.

@@ -33,6 +33,7 @@ Each helper will return an instance of the corresponding Glowie core class.
 - `element()`
 - `encrypt()`
 - `env()`
+- `filled()`
 - `http()`
 - `is_empty()`
 - `layout()`
