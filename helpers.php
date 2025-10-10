@@ -193,13 +193,13 @@ if (!function_exists('response')) {
      * Sends a raw plain text body to the response.
      * @param string|null $content (Optional) Content to set as the body. Use `null` to return the Response instance.
      * @param string $type (Optional) Content type header to set, defaults to `text/plain`.
-     * @return \Glowie\Core\Http\Response|void Returns the Response instance.
+     * @return \Glowie\Core\Http\Response Returns the Response instance.
      */
     function response(?string $body = null, string $type = 'text/plain')
     {
         $response = \Glowie\Core\Http\Rails::getResponse();
         if (is_null($body)) return $response;
-        $response->setBody($body, $type);
+        return $response->setBody($body, $type);
     }
 }
 
@@ -322,7 +322,7 @@ if (!function_exists('redirect')) {
      * Redirects to a relative or full URL.
      * @param string $destination Target URL to redirect to.
      * @param int $code (Optional) HTTP status code to pass with the redirect.
-     * @return void
+     * @return \Glowie\Core\Http\Response Returns the Response instance.
      */
     function redirect(string $destination, int $code = 302)
     {
@@ -487,7 +487,7 @@ if (!function_exists('app')) {
      * Gets or sets a shared state in the application container.
      * @param string $name State name to be get or set.
      * @param mixed $data (Optional) Data to set. If null, only returns the state value.
-     * @return void
+     * @return mixed Returns the value.
      */
     function app(string $name, $data = null)
     {
