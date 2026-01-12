@@ -26,21 +26,6 @@ if (!function_exists('env')) {
     }
 }
 
-if (!function_exists('translate')) {
-    /**
-     * Gets an internalization string from a language configuration.
-     * @param string $key String key to get (accepts dot notation keys).
-     * @param array $params (Optional) Associative array of parameters to bind into the string.
-     * @param string|null $lang (Optional) Language name to get string from. Leave empty to use the current active language.
-     * @param string $default (Optional) Default value to return if the key is not found.
-     * @return string Returns internationalization string if found or the default value if not.
-     */
-    function translate(string $key, array $params = [], ?string $lang = null, string $default = '')
-    {
-        return \Babel::get($key, $params, $lang, $default);
-    }
-}
-
 if (!function_exists('__')) {
     /**
      * Gets an internalization string from a language configuration.
@@ -296,11 +281,12 @@ if (!function_exists('element')) {
     /**
      * Creates a new Element.
      * @param array $data (Optional) An associative array with the initial data to parse.
+     * @param bool $recursive (Optional) True if the data must be parsed recursively.
      * @return \Glowie\Core\Element Element instance.
      */
-    function element(array $data = [])
+    function element(array $data = [], bool $recursive = false)
     {
-        return new \Glowie\Core\Element($data);
+        return new \Glowie\Core\Element($data, $recursive);
     }
 }
 
@@ -409,9 +395,9 @@ if (!function_exists('dispatch')) {
      * @param string $job A job classname with namespace. You can use `JobName::class` to get this property correctly.
      * @param mixed $data (Optional) Data to pass to the job.
      * @param string $queue (Optional) Queue name to add this job to.
-     * @param int $delay (Optional) Delay in seconds to run this job.
+     * @param mixed $delay Delay in seconds to run this job. You can also use a DateTime instance.
      */
-    function dispatch(string $job, $data = null, string $queue = 'default', int $delay = 0)
+    function dispatch(string $job, $data = null, string $queue = 'default', $delay = null)
     {
         return \Glowie\Core\Queue\Queue::add($job, $data, $queue, $delay);
     }

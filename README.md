@@ -1,6 +1,9 @@
 ## Global Helpers
 This package allows some of [Glowie Framework](https://github.com/glowieframework/glowie) core functions to run in a global scope as helpers.
 
+> [!IMPORTANT]  
+> This package has been incorporated into glowie-core starting with version 1.10.2. Manual installation is no longer required from this version onward. This package will no longer be updated and is being maintained for backward compatibility only.
+
 ### Installation
 Install in your Glowie project using Composer:
 
@@ -49,7 +52,6 @@ Each helper will return an instance of the corresponding Glowie core class.
 - `session()`
 - `storage_path()`
 - `today()`
-- `translate()`
 - `unless()`
 - `uploader()`
 - `url()`
